@@ -21,6 +21,7 @@ app.get('/fruits', (req, res) => {
   res.send(fruits);
 });
 
+// specific fruit page
 app.get('/fruits/:id', (req, res) => {
   const index = req.params.id - 1;
   const fruit = fruits[index];
@@ -29,7 +30,9 @@ app.get('/fruits/:id', (req, res) => {
     ? res
         .status(404)
         .send({ error: `Fruit with id ${req.params.id} not found` })
-    : res.status(200).send({ id: `${req.params.id}`, name: `${fruit.name}` });
+    : res
+        .status(200)
+        .send({ id: parseInt(req.params.id), name: `${fruit.name}` });
 });
 
 module.exports = app;
