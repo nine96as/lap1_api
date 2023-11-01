@@ -21,4 +21,15 @@ app.get('/fruits', (req, res) => {
   res.send(fruits);
 });
 
+app.get('/fruits/:id', (req, res) => {
+  const index = req.params.id - 1;
+  const fruit = fruits[index];
+
+  !fruit
+    ? res
+        .status(404)
+        .send({ error: `Fruit with id ${req.params.id} not found` })
+    : res.status(200).send({ id: `${req.params.id}`, name: `${fruit.name}` });
+});
+
 module.exports = app;

@@ -1,6 +1,6 @@
 [
-  { "name": "pineapple", "id": 1 },
-  { "name": "plum", "id": 2 },
-  { "name": "avocado", "id": 3 },
-  { "name": "mango", "id": 4 }
+  { "name": "apple", "id": 1 },
+  { "name": "banana", "id": 2 },
+  { "name": "cherry", "id": 3 },
+  { "name": "date", "id": 4 }
 ]

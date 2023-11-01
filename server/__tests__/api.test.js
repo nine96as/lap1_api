@@ -7,7 +7,7 @@ describe('api server', () => {
   let api;
 
   beforeAll(() => {
-    api = app.listen(5000, () => {
+    api = app.listen(6000, () => {
       console.log('Test server running on port 5000');
     });
   });
