@@ -51,4 +51,21 @@ app.post('/fruits', (req, res) => {
   res.status(201).send(fruit);
 });
 
+// update a fruit
+app.patch('/fruits/:id', (req, res) => {
+  console.log('update function called!');
+  const fruit = req.body;
+  const index = req.params.id - 1;
+  const existingFruit = fruits[index];
+
+  if (!fruit.name)
+    res.status(422).send({ error: 'You need to specify the name' });
+
+  if (!existingFruit)
+    res.status(404).send({ error: 'cannot update missing fruit' });
+
+  existingFruit.name = fruit.name;
+  res.status(200).send(existingFruit);
+});
+
 module.exports = app;
