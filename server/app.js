@@ -13,7 +13,7 @@ app.use(logger);
 
 // home page
 app.get('/', (req, res) => {
-  res.status(200).send('Are you reddy!');
+  res.status(200).send({ message: 'Are you reddy!' });
 });
 
 // list of fruits
