@@ -53,7 +53,6 @@ app.post('/fruits', (req, res) => {
 
 // update a fruit
 app.patch('/fruits/:id', (req, res) => {
-  console.log('update function called!');
   const fruit = req.body;
   const index = req.params.id - 1;
   const existingFruit = fruits[index];
@@ -70,15 +69,14 @@ app.patch('/fruits/:id', (req, res) => {
 
 // delete a fruit
 app.delete('/fruits/:id', (req, res) => {
-  const index = req.params.id - 1;
-  const existingFruit = fruits[index];
-  console.log(existingFruit);
+  const { id } = req.params;
+  const index = fruits.findIndex((e) => e.id === parseInt(id));
+  const fruit = fruits[index];
 
-  if (!existingFruit)
-    res.status(404).send({ error: 'cannot delete missing fruit' });
+  if (!fruit) res.sendStatus(404);
   fruits.splice(index, 1);
 
-  res.status(204).send(existingFruit);
+  res.sendStatus(204);
 });
 
 module.exports = app;
