@@ -68,4 +68,17 @@ app.patch('/fruits/:id', (req, res) => {
   res.status(200).send(existingFruit);
 });
 
+// delete a fruit
+app.delete('/fruits/:id', (req, res) => {
+  const index = req.params.id - 1;
+  const existingFruit = fruits[index];
+  console.log(existingFruit);
+
+  if (!existingFruit)
+    res.status(404).send({ error: 'cannot delete missing fruit' });
+  fruits.splice(index, 1);
+
+  res.status(204).send(existingFruit);
+});
+
 module.exports = app;
