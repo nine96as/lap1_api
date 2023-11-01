@@ -35,4 +35,20 @@ app.get('/fruits/:id', (req, res) => {
         .send({ id: parseInt(req.params.id), name: `${fruit.name}` });
 });
 
+// create a fruit
+app.post('/fruits', (req, res) => {
+  const fruit = req.body;
+
+  if (!fruit.name)
+    res.status(422).send({ error: 'you need a name to create a fruit' });
+
+  const lastFruit = fruits[fruits.length - 1];
+
+  const lastId = lastFruit ? lastFruit.id + 1 : 1;
+  fruit.id = lastId;
+
+  fruits.push(fruit);
+  res.status(201).send(fruit);
+});
+
 module.exports = app;
